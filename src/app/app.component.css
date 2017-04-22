@@ -14,16 +14,45 @@
     height:100px;
     font-family: fantasy;
     text-align: center;
-    color: white;
+    color: mediumslateblue;
     font-size: 40px;
 
 }
 
+.gameArea{
+    width:100%;
+    height: 700px;
+    display: inline-block;
+}
 .playBox{
     width: 70%;
     height:700px;
     display: block;
-    border: 2px solid white;
+    border: 2px solid mediumslateblue;
     margin-left: 6%;
+    float: left;
+    border-radius: 10px;
 
+}
+
+.playBtnCover{
+    width: 175px;
+    height:700px;
+    float: left;
+    margin-left: 40px;
+
+}
+
+.playBtn{
+    width: 175px;
+    height: 35px;
+    border:1px solid mediumslateblue;
+    color: mediumslateblue;
+    text-align: center;
+    margin: 20px 0px;
+    border-radius: 5px;
+    padding: 5px 0;
+    justify-content: center;
+    padding-top: 15px;
+    cursor: pointer;
 }

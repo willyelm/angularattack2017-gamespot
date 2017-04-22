@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Game Stop !!!';
+  gameTypes=['Snake', 'Tic Tac Toe', 'Bucket Fill'];
 }

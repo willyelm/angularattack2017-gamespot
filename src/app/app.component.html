@@ -2,5 +2,13 @@
   <div class="appTitle">
     <h1>{{title}}</h1>
   </div>
-  <div class="playBox"></div>
+  <div class="gameArea">
+    <div class="playBox">
+
+    </div>
+    <div class="playBtnCover">
+      <div class="playBtn" *ngFor="let item of gameTypes">{{item}}</div>
+    </div>
+  </div>
+
 </div>
