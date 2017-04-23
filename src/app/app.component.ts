@@ -14,8 +14,6 @@ export class AppComponent implements OnInit{
     constructor(
         private _eref: ElementRef, private  _render: Renderer
     ) {
-        this.playAreaWidth = '800px';
-        this.playAreaHeight = '700px';
     }
     ngOnInit() {
        this.getWidthHeight();
