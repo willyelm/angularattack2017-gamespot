@@ -4,10 +4,12 @@
   </div>
   <div class="gameArea">
     <div class="playBox">
-
+        <div *ngIf="gameSelect == 'snake'"> {{gameSelect}}</div>
+        <div *ngIf="gameSelect == 'tic tac toe'"> {{gameSelect}}</div>
+        <div *ngIf="gameSelect == 'bucket fill'"> {{gameSelect}}</div>
     </div>
     <div class="playBtnCover">
-      <div class="playBtn" *ngFor="let item of gameTypes">{{item}}</div>
+      <div class="playBtn" *ngFor="let item of gameTypes" (click)="gameClick($event)">{{item}}</div>
     </div>
   </div>
 

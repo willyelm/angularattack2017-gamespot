@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Game Stop !!!';
-  gameTypes=['Snake', 'Tic Tac Toe', 'Bucket Fill'];
+  gameTypes = ['Snake', 'Tic Tac Toe', 'Bucket Fill'];
+  gameSelect = 'snake';
+
+  gameClick(e) {
+    this.gameSelect = e.target.innerHTML.toLowerCase();
+    console.log(this.gameSelect);
+  }
 }
