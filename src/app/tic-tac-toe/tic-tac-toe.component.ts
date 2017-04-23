@@ -27,7 +27,6 @@ export class TicTacToeComponent implements OnInit, OnChanges {
       this.createTicCanvas();
   }
   setCanvas(){
-    console.log(this._eref.nativeElement.getElementsByTagName('div'))
     this._render.setElementStyle(this._eref.nativeElement.getElementsByTagName('div')[0], 'width', this.playAreaWidth);
     this._render.setElementStyle(this._eref.nativeElement.getElementsByTagName('div')[0], 'height', this.playAreaHeight);
     this._render.setElementStyle(this._eref.nativeElement.getElementsByTagName('div')[0], 'background-color', 'black');
@@ -59,7 +58,6 @@ export class TicTacToeComponent implements OnInit, OnChanges {
 
 
       }
-      console.log(document.getElementById('tictacBoard'));
       this._render.setElementStyle(document.getElementById('tictacBoard'), 'margin-top', '20%');
       this._render.setElementStyle(document.getElementById('tictacBoard'), 'margin-left', '35%');
   }
@@ -67,7 +65,6 @@ export class TicTacToeComponent implements OnInit, OnChanges {
       if(this.pointer == undefined){
           this.pointer = e.target.innerHTML;
           this.AiPointer = this.pointer == ' x ' ? ' o ' : ' x ' ;
-          console.log(this.AiPointer, this.pointer);
       }
   }
 
@@ -92,9 +89,11 @@ export class TicTacToeComponent implements OnInit, OnChanges {
           for (let i = 0; i < 9; i++ ) {
               tiles[i] = document.getElementById('block-' + i).innerHTML;
           }
-          console.log(tiles);
           this.checkBoxes(tiles, this.pointer);
           this.checkBoxes(tiles, this.AiPointer);
+          setTimeout(this.aiTurn(e), 50000);
+
+
 
       }
 
@@ -118,5 +117,80 @@ export class TicTacToeComponent implements OnInit, OnChanges {
       } else if (tiles[2] == checkPointer && tiles[4] == checkPointer && tiles[6] == checkPointer){
           this.winner(checkPointer);
       }
+  };
+
+  aiTurn(e) {
+      var tileNumber =  e.id[e.id.length - 1];
+
+      if (tileNumber == 0) {
+            var aiArray = [1, 3, 4];
+            this.chooseRand(aiArray);
+
+      } else if(tileNumber == 1){
+            var aiArray = [0, 2, 4];
+            this.chooseRand(aiArray);
+
+      } else if(tileNumber == 2){
+          var aiArray = [1, 4, 5];
+          this.chooseRand(aiArray);
+
+      } else if(tileNumber == 3){
+          var aiArray = [0, 4, 6];
+          this.chooseRand(aiArray);
+
+      } else if(tileNumber == 4){
+          var aiArray = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+          this.chooseRand(aiArray);
+
+      } else if(tileNumber == 5){
+          var aiArray = [2, 4, 8];
+          this.chooseRand(aiArray);
+
+      } else if(tileNumber == 6){
+          var aiArray = [3, 4, 7];
+          this.chooseRand(aiArray);
+
+      } else if(tileNumber == 7){
+          var aiArray = [6, 4, 8];
+          this.chooseRand(aiArray);
+
+      } else if(tileNumber == 8){
+          var aiArray = [4, 5, 7];
+          this.chooseRand(aiArray);
+      }
+
+  }
+  chooseRand(aiArray){
+      const completeArray = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+      var ctiles = [];
+      for (let i = 0; i < 9; i++ ) {
+          ctiles[i] = document.getElementById('block-' + i).innerHTML;
+      }
+
+      var filledArray = ctiles.filter(function ( val) {
+          return val == '';
+      })
+      if(filledArray.length>0){
+          var item =  aiArray[Math.floor(Math.random()* aiArray.length)];
+          var currentElem = document.getElementById('block-' + item).innerHTML;
+          if(currentElem == '') {
+              document.getElementById('block-' + item).innerHTML = this.AiPointer
+          } else{
+              this.chooseRand(completeArray);
+          }
+
+      } else {
+          this.gameOver();
+      }
+
+  }
+  gameOver(){
+      window.alert('Game Over !!')
+      for (let i = 0; i < 9; i++ ) {
+          document.getElementById('block-' + i).innerHTML = '';
+
+      }
+      this.pointer = undefined;
+      this.AiPointer = undefined;
   }
 }
