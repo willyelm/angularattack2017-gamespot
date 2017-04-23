@@ -74,13 +74,13 @@ export class TicTacToeComponent implements OnInit, OnChanges {
       } else {
           window.alert('You Lost! Better luck next time. ');
       }
-
+      this.pointer = undefined;
+      this.AiPointer = undefined;
       for (let i = 0; i < 9; i++ ) {
           document.getElementById('block-' + i).innerHTML = '';
 
       }
-      this.pointer = undefined;
-      this.AiPointer = undefined;
+
   }
   writePointer(e) {
       var tiles = [];
@@ -91,7 +91,9 @@ export class TicTacToeComponent implements OnInit, OnChanges {
           }
           this.checkBoxes(tiles, this.pointer);
           this.checkBoxes(tiles, this.AiPointer);
-          setTimeout(this.aiTurn(e), 50000);
+          setTimeout(()=>{
+              this.aiTurn(e);
+          }, 500);
 
 
 
@@ -185,12 +187,12 @@ export class TicTacToeComponent implements OnInit, OnChanges {
 
   }
   gameOver(){
-      window.alert('Game Over !!')
+      window.alert('Game Over !!');
+      this.pointer = undefined;
+      this.AiPointer = undefined;
       for (let i = 0; i < 9; i++ ) {
           document.getElementById('block-' + i).innerHTML = '';
 
       }
-      this.pointer = undefined;
-      this.AiPointer = undefined;
   }
 }
