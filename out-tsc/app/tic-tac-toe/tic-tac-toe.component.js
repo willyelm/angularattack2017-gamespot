@@ -42,18 +42,71 @@ export var TicTacToeComponent = (function () {
             this._render.setElementStyle(document.getElementById('block-' + i), 'background-color', 'mediumslateblue');
             this._render.setElementStyle(document.getElementById('block-' + i), 'float', 'left');
             this._render.setElementStyle(document.getElementById('block-' + i), 'cursor', 'pointer');
+            this._render.setElementStyle(document.getElementById('block-' + i), 'text-align', 'center');
+            this._render.setElementStyle(document.getElementById('block-' + i), 'font-size', '75px');
+            this._render.setElementStyle(document.getElementById('block-' + i), 'font-family', 'fantasy');
         }
         console.log(document.getElementById('tictacBoard'));
         this._render.setElementStyle(document.getElementById('tictacBoard'), 'margin-top', '20%');
         this._render.setElementStyle(document.getElementById('tictacBoard'), 'margin-left', '35%');
     };
     TicTacToeComponent.prototype.selectPointer = function (e) {
-        console.log(e.target.innerHTML);
-        this.pointer = e.target.innerHTML;
+        if (this.pointer == undefined) {
+            this.pointer = e.target.innerHTML;
+            this.AiPointer = this.pointer == ' x ' ? ' o ' : ' x ';
+            console.log(this.AiPointer, this.pointer);
+        }
+    };
+    TicTacToeComponent.prototype.winner = function (a) {
+        if (a == this.pointer) {
+            window.alert('Congratulations! You won the game');
+        }
+        else {
+            window.alert('You Lost! Better luck next time. ');
+        }
+        for (var i = 0; i < 9; i++) {
+            document.getElementById('block-' + i).innerHTML = '';
+        }
+        this.pointer = undefined;
+        this.AiPointer = undefined;
     };
     TicTacToeComponent.prototype.writePointer = function (e) {
-        console.log(e);
-        e.innerHTML = 'x';
+        var tiles = [];
+        if (this.pointer != undefined && e.innerHTML == '') {
+            e.innerHTML = this.pointer;
+            for (var i = 0; i < 9; i++) {
+                tiles[i] = document.getElementById('block-' + i).innerHTML;
+            }
+            console.log(tiles);
+            this.checkBoxes(tiles, this.pointer);
+            this.checkBoxes(tiles, this.AiPointer);
+        }
+    };
+    TicTacToeComponent.prototype.checkBoxes = function (tiles, checkPointer) {
+        if (tiles[0] == checkPointer && tiles[1] == checkPointer && tiles[2] == checkPointer) {
+            this.winner(checkPointer);
+        }
+        else if (tiles[3] == checkPointer && tiles[4] == checkPointer && tiles[5] == checkPointer) {
+            this.winner(checkPointer);
+        }
+        else if (tiles[6] == checkPointer && tiles[7] == checkPointer && tiles[8] == checkPointer) {
+            this.winner(checkPointer);
+        }
+        else if (tiles[0] == checkPointer && tiles[3] == checkPointer && tiles[6] == checkPointer) {
+            this.winner(checkPointer);
+        }
+        else if (tiles[1] == checkPointer && tiles[4] == checkPointer && tiles[7] == checkPointer) {
+            this.winner(checkPointer);
+        }
+        else if (tiles[2] == checkPointer && tiles[5] == checkPointer && tiles[8] == checkPointer) {
+            this.winner(checkPointer);
+        }
+        else if (tiles[0] == checkPointer && tiles[4] == checkPointer && tiles[8] == checkPointer) {
+            this.winner(checkPointer);
+        }
+        else if (tiles[2] == checkPointer && tiles[4] == checkPointer && tiles[6] == checkPointer) {
+            this.winner(checkPointer);
+        }
     };
     __decorate([
         Input(), 
