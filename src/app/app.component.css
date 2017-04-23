@@ -1,6 +1,6 @@
 .bckground{
 
-    background-image:url("../images/imbck.png");
+    background-image:url("/imbck.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
