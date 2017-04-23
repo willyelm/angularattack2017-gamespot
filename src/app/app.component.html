@@ -3,9 +3,9 @@
     <h1>{{title}}</h1>
   </div>
   <div class="gameArea">
-    <div class="playBox">
+    <div class="playBox" id = playArea>
         <div *ngIf="gameSelect == 'snake'">
-            <canvas id="snake canvas"></canvas>
+            <app-snake-game [playAreaWidth] = playAreaWidth [playAreaHeight]= playAreaHeight></app-snake-game>
         </div>
         <div *ngIf="gameSelect == 'tic tac toe'"> {{gameSelect}}</div>
         <div *ngIf="gameSelect == 'bucket fill'"> {{gameSelect}}</div>
