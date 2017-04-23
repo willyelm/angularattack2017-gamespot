@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { SnakeGameComponent } from "./snake-game/snake-game.component";
+import { TicTacToeComponent } from './tic-tac-toe/tic-tac-toe.component';
 export var AppModule = (function () {
     function AppModule() {
     }
@@ -20,7 +21,8 @@ export var AppModule = (function () {
         NgModule({
             declarations: [
                 AppComponent,
-                SnakeGameComponent
+                SnakeGameComponent,
+                TicTacToeComponent
             ],
             imports: [
                 BrowserModule,
