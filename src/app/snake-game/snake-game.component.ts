@@ -126,7 +126,7 @@ export class SnakeGameComponent implements OnInit, OnChanges {
 
     this.navSnake.unshift(this.tail);
 
-    for(var i =0; i < this.navSnake.length; i++){
+    for(var i = 0; i < this.navSnake.length; i++){
       var c = this.navSnake[i];
       this.paint_cell(c.x,c.y);
     }
