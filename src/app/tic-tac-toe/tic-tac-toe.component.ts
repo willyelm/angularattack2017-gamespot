@@ -49,6 +49,12 @@ export class TicTacToeComponent implements OnInit, OnChanges {
           this._render.setElementStyle(document.getElementById('block-' + i), 'background-color', 'mediumslateblue' );
           this._render.setElementStyle(document.getElementById('block-' + i), 'float', 'left' );
           this._render.setElementStyle(document.getElementById('block-' + i), 'cursor', 'pointer');
+          this._render.setElementStyle(document.getElementById('block-' + i), 'text-align', 'center');
+
+          this._render.setElementStyle(document.getElementById('block-' + i), 'font-size', '75px');
+          this._render.setElementStyle(document.getElementById('block-' + i), 'font-family', 'fantasy');
+
+
 
 
       }
@@ -62,7 +68,10 @@ export class TicTacToeComponent implements OnInit, OnChanges {
   }
 
   writePointer(e) {
-      console.log(e);
-      e.innerHTML = 'x';
+      console.log(e.innerHTML);
+      if (this.pointer != undefined && e.innerHTML == '' ){
+          e.innerHTML = this.pointer;
+      }
+
   }
 }

@@ -3,9 +3,9 @@
     height:306px;
     display: inline-block;
 }
-.ticBlock{
-    background-color: mediumslateblue;
-    float: left;
+
+.tictacBlock{
+    text-align: center;
 }
 
 .pbox{
