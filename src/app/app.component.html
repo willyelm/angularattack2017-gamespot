@@ -4,7 +4,9 @@
   </div>
   <div class="gameArea">
     <div class="playBox">
-        <div *ngIf="gameSelect == 'snake'"> {{gameSelect}}</div>
+        <div *ngIf="gameSelect == 'snake'">
+            <canvas id="snake canvas"></canvas>
+        </div>
         <div *ngIf="gameSelect == 'tic tac toe'"> {{gameSelect}}</div>
         <div *ngIf="gameSelect == 'bucket fill'"> {{gameSelect}}</div>
     </div>
