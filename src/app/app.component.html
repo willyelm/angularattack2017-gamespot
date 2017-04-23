@@ -7,7 +7,9 @@
         <div *ngIf="gameSelect == 'snake'">
             <app-snake-game [playAreaWidth] = playAreaWidth [playAreaHeight]= playAreaHeight></app-snake-game>
         </div>
-        <div *ngIf="gameSelect == 'tic tac toe'"> {{gameSelect}}</div>
+        <div *ngIf="gameSelect == 'tic tac toe'">
+            <app-tic-tac-toe [playAreaWidth] = playAreaWidth [playAreaHeight]= playAreaHeight></app-tic-tac-toe>
+        </div>
         <div *ngIf="gameSelect == 'bucket fill'"> {{gameSelect}}</div>
     </div>
     <div class="playBtnCover">
