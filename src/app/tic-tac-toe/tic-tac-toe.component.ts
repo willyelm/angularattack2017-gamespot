@@ -14,6 +14,7 @@ export class TicTacToeComponent implements OnInit, OnChanges {
   canvasWidth;
   game_loop;
   pointer;
+  AiPointer;
 
   constructor(private _eref: ElementRef, private _render: Renderer) { }
 
@@ -63,15 +64,59 @@ export class TicTacToeComponent implements OnInit, OnChanges {
       this._render.setElementStyle(document.getElementById('tictacBoard'), 'margin-left', '35%');
   }
   selectPointer(e){
-      console.log(e.target.innerHTML);
-      this.pointer = e.target.innerHTML;
+      if(this.pointer == undefined){
+          this.pointer = e.target.innerHTML;
+          this.AiPointer = this.pointer == ' x ' ? ' o ' : ' x ' ;
+          console.log(this.AiPointer, this.pointer);
+      }
   }
 
-  writePointer(e) {
-      console.log(e.innerHTML);
-      if (this.pointer != undefined && e.innerHTML == '' ){
-          e.innerHTML = this.pointer;
+  winner(a){
+      if(a == this.pointer){
+          window.alert('Congratulations! You won the game');
+      } else {
+          window.alert('You Lost! Better luck next time. ');
       }
 
+      for (let i = 0; i < 9; i++ ) {
+          document.getElementById('block-' + i).innerHTML = '';
+
+      }
+      this.pointer = undefined;
+      this.AiPointer = undefined;
+  }
+  writePointer(e) {
+      var tiles = [];
+      if (this.pointer != undefined && e.innerHTML == '' ){
+          e.innerHTML = this.pointer;
+          for (let i = 0; i < 9; i++ ) {
+              tiles[i] = document.getElementById('block-' + i).innerHTML;
+          }
+          console.log(tiles);
+          this.checkBoxes(tiles, this.pointer);
+          this.checkBoxes(tiles, this.AiPointer);
+
+      }
+
+
+  }
+  checkBoxes(tiles, checkPointer){
+      if (tiles[0] == checkPointer && tiles[1] == checkPointer && tiles[2] == checkPointer) {
+          this.winner(checkPointer);
+      } else if (tiles[3] == checkPointer && tiles[4] == checkPointer && tiles[5] == checkPointer) {
+          this.winner(checkPointer);
+      } else if (tiles[6] == checkPointer && tiles[7] == checkPointer && tiles[8] == checkPointer){
+          this.winner(checkPointer);
+      } else if (tiles[0] == checkPointer && tiles[3] == checkPointer && tiles[6] == checkPointer){
+          this.winner(checkPointer);
+      } else if (tiles[1] == checkPointer && tiles[4] == checkPointer && tiles[7] == checkPointer){
+          this.winner(checkPointer);
+      } else if (tiles[2] == checkPointer && tiles[5] == checkPointer && tiles[8] == checkPointer){
+          this.winner(checkPointer);
+      } else if (tiles[0] == checkPointer && tiles[4] == checkPointer && tiles[8] == checkPointer){
+          this.winner(checkPointer);
+      } else if (tiles[2] == checkPointer && tiles[4] == checkPointer && tiles[6] == checkPointer){
+          this.winner(checkPointer);
+      }
   }
 }
